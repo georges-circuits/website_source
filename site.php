@@ -7,7 +7,7 @@
         <title>My site</title>
         <style type="text/css">
             <?php
-                function fp_img($fname) {
+                function a_img($fname) {
                     echo "<a href=\"/images/$fname\"><img src=\"/images/lq/$fname\" alt=\"$fname\"></a>";
                 }
                 
@@ -36,11 +36,7 @@
                 <?php echo "margin-right: $margin_left_right;\n"; ?>
                 <?php echo "margin-left: $margin_left_right;\n"; ?>
             }
-            p {
-                <?php echo "color: $foreground_text;\n"; ?>
-                font-size: 16px;
-            }
-            ul {
+            p, ul {
                 <?php echo "color: $foreground_text;\n"; ?>
                 font-size: 16px;
             }
@@ -51,13 +47,15 @@
             a:link, a:visited {
                 <?php echo "color: $foreground_a;\n"; ?>
             }
-
             a:hover {
                 <?php echo "color: $foreground_a_hover;\n"; ?>
             }
             h1, h2, h3, h4, h5, h6 {
                 <?php echo "color: $foreground_text;\n"; ?>
                 font-weight: normal;
+            }
+            h1 {
+                margin-top: 50px;
             }
             button {
                 <?php echo "color: $foreground_text;\n"; ?>
@@ -79,6 +77,15 @@
                 float: left;
                 width: 50%;
             }
+            /* mobile devices and small screens */
+            @media screen and (max-width: 800px) {
+                .box {
+                    width: 100%;
+                }
+                img {
+                    margin-left: 0px;
+                }
+            }
             .clearfix::after {
                 content: "";
                 clear: both;
@@ -96,10 +103,10 @@
 
         <p>This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts. It is also one of those sideprojects that, unlike many, actually made it into something tangible. As such however, I cannot promise its long-term permanence (the possibility of me forgetting about the relentless domain expiration date is very plausible for example)...</p>
 
-        <p>Most of my older projects (mid 2019 and older) can be found on my, now no longer active, <a href="https://www.instagram.com/georges_circuits/" target="_blank">Instagram</a> account. I diversified and became less active on social media since (still don't know whether there is a correlation, anyways). I am on <a href="https://twitter.com/jiri_manak" target="_blank">Twitter</a>, but I am certainly not very active by Twitter's standards. I also sometimes post on <a href="https://www.youtube.com/channel/UCNN9n9_ZPvUgNaIL2yDP8Qw" target="_blank">YouTube</a> (and subsequently <a href="https://lbry.tv/@George:f" target="_blank">LBRY</a>) but those are even worse off activity-wise. I also have <a href="https://github.com/georges-circuits/" target="_blank">GitHub</a> with some public projects and a few more private ones, I might release them if I ever get around to tidy them up.</p>
-
+        <p>Most of my older projects (mid 2019 and older) can be found on my, now no longer active, <a href="https://www.instagram.com/georges_circuits/" target="_blank">Instagram</a> account. I diversified and became less active on social media since then (still don't know whether there is a correlation, anyways). I am on <a href="https://twitter.com/jiri_manak" target="_blank">Twitter</a>, but I am certainly not very active by Twitter's standards. I also sometimes post on <a href="https://www.youtube.com/channel/UCNN9n9_ZPvUgNaIL2yDP8Qw" target="_blank">YouTube</a> (and subsequently <a href="https://lbry.tv/@George:f" target="_blank">LBRY</a>) but those are even worse off activity-wise. I also have <a href="https://github.com/georges-circuits/" target="_blank">GitHub</a> with some public projects and a few more private ones, I might release them if I ever get around to tidy them up.</p>
         
-        <h1 style="margin-top: 50px;">2020</h1>
+        
+        <h1>2020</h1>
 
         <h2><i>In progress:</i> Facebook datamining</h2>
         <div class="clearfix">
@@ -109,7 +116,7 @@
                 <p>I recently also implemented the most used words counter. I'm planning to add a couple more features and make the script more interactive and intuitive to use. I haven't yet figured out whether this data could be used for at least rudimentary psychological research</p>
             </div>
             <div class="box">
-                <?php fp_img("facebook_graph.gif"); ?>
+                <?php a_img("facebook_graph.gif"); ?>
             </div>
         </div>
 
@@ -121,12 +128,12 @@
                 <p>More: <a href="/images/base_drawing.gif">base_drawing</a></p>
             </div>
             <div class="box">
-                <?php fp_img("base_hello.gif"); ?>
+                <?php a_img("base_hello.gif"); ?>
             </div>
         </div>
 
         
-        <h1 style="margin-top: 50px;">2019</h1>
+        <h1>2019</h1>
 
         <h2>Coincell keychain flashlight</h2>
         <div class="clearfix">
@@ -150,7 +157,7 @@
                 <p>More: <a href="/images/flashlight_leds_lit.gif">flashlight_leds_lit</a></p>
             </div>
             <div class="box">
-                <?php fp_img("coincell_flashlight.gif"); ?>
+                <?php a_img("coincell_flashlight.gif"); ?>
             </div>
         </div>
 
@@ -171,12 +178,12 @@
                 <p>More: <a href="/images/speaker_inside_1.gif">speaker_inside_1</a>, <a href="/images/speaker_inside_2.gif">speaker_inside_2</a>, <a href="/images/speaker_diagram_cz.gif">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.gif">speaker_layer_model</a>, <a href="/images/speaker_io_panel.gif">speaker_io_panel_cz</a></p>
             </div>
             <div class="box">
-                <?php fp_img("bt_speaker.gif"); ?>
+                <?php a_img("bt_speaker.gif"); ?>
             </div>
         </div>
 
         
-        <!-- <h1 style="margin-top: 50px;">2018</h1>
+        <!-- <h1>2018</h1>
 
         <h2>Watering system controller box</h2>
         <div class="clearfix">
@@ -185,17 +192,17 @@
                 <p></p>
             </div>
             <div class="box">
-                <?php //fp_img("controller_box.gif"); ?>
+                <?php //a_img("controller_box.gif"); ?>
             </div>
         </div> -->
 
         
-        <h1 style="margin-top: 50px;">2017/18</h1>
+        <h1>2017/18</h1>
 
         <h2>Quadcopters!</h2>
         <div class="clearfix">
             <div class="box">
-                <p>The one you can see on the right is my newest one:
+                <p>The one you can see on the right is my latest one:
                 <ul>
                     <li>Quad itself:<ul>
                         <li>Frame: <b>Martian II</b></li>
@@ -219,16 +226,16 @@
                         <li>Charger: <b>ISDT SC-608</b></li>
                     </ul></li>
                 </ul></p>
-                <p></p>
+                <p>One of the first questions people have, after asking about the range, maximum speed and whether it can spy on you, is how much all this would cost in case they wanted to get into it. I never know how to approach this because if I tell them the amount, It'll most likely scare them off. It's not a cheap hobby to get into, that's for sure, <i>especially</i> initially when starting from zero. However, once you've acquired things like the radio, goggles and a charger, building and maintaining quads isn't that much of an expense.</p>
                 <p>More: <a href="/images/quad_scenique.gif">quad_scenique</a></p>
             </div>
             <div class="box">
-                <?php fp_img("quad_1.gif"); ?>
+                <?php a_img("quad_1.gif"); ?>
             </div>
         </div>
 
 
-        <h1 style="margin-top: 50px;">2016</h1>
+        <h1>2016</h1>
 
         <h2>Arduino-based multicell Li-Po or Lead-acid battery charger</h2>
         <div class="clearfix">
@@ -237,7 +244,7 @@
                 <p>More: <a href="/images/charger_pcb_1.gif">charger_pcb_1</a>, <a href="/images/charger_pcb_2.gif">charger_pcb_2</a></p>
             </div>
             <div class="box">
-                <?php fp_img("charger.gif"); ?>
+                <?php a_img("charger.gif"); ?>
             </div>
         </div>
 
@@ -248,7 +255,7 @@
                 <p>More: <a href="/images/robot_driving.gif">robot_driving</a></p>
             </div>
             <div class="box">
-                <?php fp_img("robot_top.gif"); ?>
+                <?php a_img("robot_top.gif"); ?>
             </div>
         </div>
 
@@ -260,7 +267,7 @@
                 <p>More images: <a href="/images/mppt_inside.gif">mppt_inside</a>, <a href="/images/mppt_pcb.gif">mppt_pcb</a></p>
             </div>
             <div class="box">>
-                <?php fp_img("mppt_display.gif"); ?>
+                <?php a_img("mppt_display.gif"); ?>
             </div>
         </div>
 
@@ -271,12 +278,12 @@
                 <p>More images: <a href="/images/power_bank_inside.gif">power_bank_inside</a>, <a href="/images/power_bank_pcb.gif">power_bank_pcb</a></p>
             </div>
             <div class="box">
-                <?php fp_img("powerbank_charging.gif"); ?>
+                <?php a_img("powerbank_charging.gif"); ?>
             </div>
         </div>
 
         
-        <h1 style="margin-top: 50px;">2015</h1> 
+        <h1>2015</h1> 
 
         <h2>Arduino "smart watch"</h2>
         <div class="clearfix">
@@ -291,7 +298,7 @@
                 <p>More images: <a href="/images/smartwatch_tick.gif">smartwatch_tick</a>, <a href="/images/arduino_smartwatch_2.gif">arduino_smartwatch_2</a></p>
             </div>
             <div class="box">
-                <?php fp_img("arduino_smartwatch.gif"); ?>
+                <?php a_img("arduino_smartwatch.gif"); ?>
             </div>
         </div>
 
@@ -303,7 +310,7 @@
                 <p>More images: <a href="/images/mppt_v1_display.gif">mppt_v1_display</a></p>
             </div>
             <div class="box">
-                <?php fp_img("mppt_v1.gif"); ?>
+                <?php a_img("mppt_v1.gif"); ?>
             </div>
         </div>
 
