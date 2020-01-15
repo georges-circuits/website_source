@@ -4,21 +4,33 @@
 <html>
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <meta name="keywords" content="blog,about"> TODO-->
         <title>My site</title>
         <style type="text/css">
             <?php
                 function a_img($fname) {
                     echo "<a href=\"/images/$fname\"><img src=\"/images/lq/$fname\" alt=\"$fname\"></a>";
                 }
+                function logEvent($message) {
+                    if ($message != '') {
+                        // Add a timestamp to the start of the $message
+                        $message = date("Y/m/d H:i:s").': '.$message;
+                        $fp = fopen('logs/log.txt', 'a');
+                        fwrite($fp, $message."\n");
+                        fclose($fp);
+                    }
+                }
                 
                 // visual page setup
+                $theme_val = $_GET["theme"];
                 $margin_left_right = "5%";
-                if($_GET["theme"] === "light") 
+                if($theme_val === "light")
                 {
                     $background = "#FFFFFF";
                     $foreground_text = "#000000";
                     $foreground_a = "#3f51b5";
                     $foreground_a_hover = "#03a9f4";
+                    $text_highlight = "#EEEEEE";
                 } 
                 else 
                 {
@@ -26,6 +38,7 @@
                     $foreground_text = "#DFDFDF";
                     $foreground_a = "#03a9f4"; //03a9f4
                     $foreground_a_hover = "#3f51b5"; //3f51b5
+                    $text_highlight = "#2E2E2E";
                 }
             ?>
             body {
@@ -77,6 +90,11 @@
                 float: left;
                 width: 50%;
             }
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
             /* mobile devices and small screens */
             @media screen and (max-width: 800px) {
                 .box {
@@ -86,11 +104,6 @@
                     margin-left: 0px;
                 }
             }
-            .clearfix::after {
-                content: "";
-                clear: both;
-                display: table;
-            }
         </style>
     </head>
     <body>
@@ -99,21 +112,27 @@
             <button style="float: right;" type="submit" name="theme" value="light">Light</button>
         </form>
 
-        <h1>Welcome</h1>
+        <?php
+            logEvent(join([$_SERVER['HTTP_ACCEPT_LANGUAGE'], " ", $_SERVER['SERVER_PROTOCOL'], " ", $_SERVER['HTTP_USER_AGENT'], " theme:", $theme_val]));
+        ?>
+
+        
+        <h1 id="welcome">Welcome</h1>
 
         <p>This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts. It is also one of those sideprojects that, unlike many, actually made it into something tangible. As such however, I cannot promise its long-term permanence (the possibility of me forgetting about the relentless domain expiration date is very plausible for example)...</p>
 
         <p>Most of my older projects (mid 2019 and older) can be found on my, now no longer active, <a href="https://www.instagram.com/georges_circuits/" target="_blank">Instagram</a> account. I diversified and became less active on social media since then (still don't know whether there is a correlation, anyways). I am on <a href="https://twitter.com/jiri_manak" target="_blank">Twitter</a>, but I am certainly not very active by Twitter's standards. I also sometimes post on <a href="https://www.youtube.com/channel/UCNN9n9_ZPvUgNaIL2yDP8Qw" target="_blank">YouTube</a> (and subsequently <a href="https://lbry.tv/@George:f" target="_blank">LBRY</a>) but those are even worse off activity-wise. I also have <a href="https://github.com/georges-circuits/" target="_blank">GitHub</a> with some public projects and a few more private ones, I might release them if I ever get around to tidy them up.</p>
         
+        <br>
         
-        <h1>2020</h1>
+        <h1 id="2020">2020</h1>
 
         <h2><i>In progress:</i> Facebook datamining</h2>
         <div class="clearfix">
             <div class="box">
                 <p>How a random weekend project turned into my graduation work... At the beginning it was just that. I wanted to learn how to work with databases. I figured that instead of using some random JSON example I could download my data from Facebook and use that instead.</p>
                 <p>I'm already satisfied with the basic functionality (the original objective) - the Python script counts the amount of messages in a specified time frame, say a week, resulting in a messages per week value which it then puts into a .csv chart. I can then take this file, open it in Excel and make a nice graph out of it.</p>
-                <p>I recently also implemented the most used words counter. I'm planning to add a couple more features and make the script more interactive and intuitive to use. I haven't yet figured out whether this data could be used for at least rudimentary psychological research</p>
+                <p>I recently also implemented the most used words counter. I'm planning to add a couple more features and make the script more interactive and intuitive to use. I haven't yet figured out whether this data could be used for at least rudimentary psychological research.</p>
             </div>
             <div class="box">
                 <?php a_img("facebook_graph.gif"); ?>
@@ -133,7 +152,7 @@
         </div>
 
         
-        <h1>2019</h1>
+        <h1 id="2019">2019</h1>
 
         <h2>Coincell keychain flashlight</h2>
         <div class="clearfix">
@@ -195,9 +214,11 @@
                 <?php //a_img("controller_box.gif"); ?>
             </div>
         </div> -->
+        <!-- Nothing really happened this year and this project isn't very interesting in my opinion, so that's why this is commented out... It is awkward, I know. 
+        The image is up on the server in case you were wondering :) You can try to figure out the name (or checkout GitHub but don't tell that to anyone). -->
 
         
-        <h1>2017/18</h1>
+        <h1 id="2017/18">2017/18</h1>
 
         <h2>Quadcopters!</h2>
         <div class="clearfix">
@@ -225,9 +246,11 @@
                         <li>FPV goggles: <b>Aomway Commanders</b></li>
                         <li>Charger: <b>ISDT SC-608</b></li>
                     </ul></li>
+                    <li>Camera: <b>Xiaomi Yi</b> (original)</li>
                 </ul></p>
                 <p>One of the first questions people have, after asking about the range, maximum speed and whether it can spy on you, is how much all this would cost in case they wanted to get into it. I never know how to approach this because if I tell them the amount, It'll most likely scare them off. It's not a cheap hobby to get into, that's for sure, <i>especially</i> initially when starting from zero. However, once you've acquired things like the radio, goggles and a charger, building and maintaining quads isn't that much of an expense.</p>
-                <p>More: <a href="/images/quad_scenique.gif">quad_scenique</a></p>
+                <p>Some of my flight videos: <a href="https://www.youtube.com/watch?v=7sWXnBD_3wk" target="_blank">The Best FPV Moments of 2017</a>, <a href="https://www.youtube.com/watch?v=lZ6qBc3ujX4" target="_blank">Exploring new places</a>, <a href="https://www.youtube.com/watch?v=idLPhe0tJ7k" target="_blank">Flow - FPV practice</a></p>
+                <p>More images: <a href="/images/quad_scenique.gif">quad_scenique</a>, <a href="/images/quad_charging_1.gif">quad_charging_1</a>, <a href="/images/quad_charging_2.gif">quad_charging_2</a></p>
             </div>
             <div class="box">
                 <?php a_img("quad_1.gif"); ?>
@@ -235,7 +258,7 @@
         </div>
 
 
-        <h1>2016</h1>
+        <h1 id="2016">2016</h1>
 
         <h2>Arduino-based multicell Li-Po or Lead-acid battery charger</h2>
         <div class="clearfix">
@@ -283,7 +306,7 @@
         </div>
 
         
-        <h1>2015</h1> 
+        <h1 id="2015">2015</h1> 
 
         <h2>Arduino "smart watch"</h2>
         <div class="clearfix">
@@ -315,11 +338,12 @@
         </div>
 
 
-        <footer style="margin-top: 100px; font-size: 14px;">
+        <footer style="margin-top: 100px;">
             <p><i>Work in progress...</i><br>
             České verze se to taky <b>možná</b> někdy dočká.</p>
-            <p>Up since 3<sup>rd</sup> January 2020 <br>
-            Last update: 12.1.2020</p>
+            <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/14 08:51:23: en,cs-CZ;q=0.9,cs;q=0.8 HTTP/1.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 theme:dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this.</p>
+            <p>Up since the 3<sup>rd</sup> of January 2020 <br>
+            Last update: 14.1.2020</p>
         </footer>
     </body>
 </html>

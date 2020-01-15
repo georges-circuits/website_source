@@ -1,7 +1,7 @@
 <?php
-    if (!isset($_COOKIE["theme_cookie"])) {
+    /* if (!isset($_COOKIE["theme_cookie"])) {
         setcookie ("theme_cookie", "dark", time() + (86400 * 365), "/");
-    }
+    } */
 ?>
 <!DOCTYPE html>
 <html>
