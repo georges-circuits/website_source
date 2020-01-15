@@ -113,7 +113,7 @@
         </form>
 
         <?php
-            logEvent(join([$_SERVER['HTTP_ACCEPT_LANGUAGE'], " ", $_SERVER['SERVER_PROTOCOL'], " ", $_SERVER['HTTP_USER_AGENT'], " theme:", $theme_val]));
+            logEvent(join([$_SERVER['HTTP_ACCEPT_LANGUAGE'], " || ", $_SERVER['SERVER_PROTOCOL'], " || ", $_SERVER['HTTP_USER_AGENT'], " || ", $theme_val]));
         ?>
 
         
@@ -194,7 +194,7 @@
                 </ul>
                 <p>Almost everything is custom designed (except the Bluetooth module and the two power converters visible <a href="/images/speaker_inside_1.gif">here</a>, but those were modified to be controllable by the microcontroller). The enclosure is made out of <a href="/images/speaker_layer_model.gif">layers</a> of laser cut plywood, the back is 3 mm aluminum for structural and cooling purposes. It's not the most efficient speaker in the world because it uses AB amplifiers. Pretty much all portable speakers use class D, which are way more efficient but higher distortion.</p>
                 <p><b>Participated in the electronics <a href="https://www.roznovskastredni.cz/aktuality/mistrovstvi-cr-v-radiotelektronice-deti-a-mladeze-2019" target="_blank">competition</a> in Rožnov pod Radhoštěm.</b></p>
-                <p>More: <a href="/images/speaker_inside_1.gif">speaker_inside_1</a>, <a href="/images/speaker_inside_2.gif">speaker_inside_2</a>, <a href="/images/speaker_diagram_cz.gif">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.gif">speaker_layer_model</a>, <a href="/images/speaker_io_panel.gif">speaker_io_panel_cz</a></p>
+                <p>More: <a href="/images/speaker_inside_1.gif">speaker_inside_1</a>, <a href="/images/speaker_inside_2.gif">speaker_inside_2</a>, <a href="/images/speaker_inside_3.gif">speaker_inside_3</a>, <a href="/images/speaker_schematic.gif">speaker_pcb_schematic</a>, <a href="/images/speaker_diagram_cz.gif">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.gif">speaker_layer_model</a>, <a href="/images/speaker_io_panel.gif">speaker_io_panel_cz</a></p>
             </div>
             <div class="box">
                 <?php a_img("bt_speaker.gif"); ?>
@@ -223,6 +223,7 @@
         <h2>Quadcopters!</h2>
         <div class="clearfix">
             <div class="box">
+                <p>We don't call these drones, they are quadcopetrs, quads in short. FPV stands for First Person View, which is exactly what it sounds like - you have a camera and a video transmitter on the quad, a monitor or preferably FPV goggles with a video receiver on the ground. This is usually old school analog system with low resolution and image quality but very low delay and predictable ditioration <!-- (where a digital system would start jittering, analog maybe goes out almost completely into static, but you can usally still see at least some features of the image, which is enough to steer out of that situation) -->. It enables you to see the world from the quad's perspective, which opens up a whole range of possibilities, as you can imagine.</p>
                 <p>The one you can see on the right is my latest one:
                 <ul>
                     <li>Quad itself:<ul>
@@ -246,7 +247,7 @@
                         <li>FPV goggles: <b>Aomway Commanders</b></li>
                         <li>Charger: <b>ISDT SC-608</b></li>
                     </ul></li>
-                    <li>Camera: <b>Xiaomi Yi</b> (original)</li>
+                    <li>Camera: <b>Xiaomi Yi</b> (original) - the one in the orange case, you wouldn't want to publish the recorded FPV feed.</li>
                 </ul></p>
                 <p>One of the first questions people have, after asking about the range, maximum speed and whether it can spy on you, is how much all this would cost in case they wanted to get into it. I never know how to approach this because if I tell them the amount, It'll most likely scare them off. It's not a cheap hobby to get into, that's for sure, <i>especially</i> initially when starting from zero. However, once you've acquired things like the radio, goggles and a charger, building and maintaining quads isn't that much of an expense.</p>
                 <p>Some of my flight videos: <a href="https://www.youtube.com/watch?v=7sWXnBD_3wk" target="_blank">The Best FPV Moments of 2017</a>, <a href="https://www.youtube.com/watch?v=lZ6qBc3ujX4" target="_blank">Exploring new places</a>, <a href="https://www.youtube.com/watch?v=idLPhe0tJ7k" target="_blank">Flow - FPV practice</a></p>
@@ -285,8 +286,7 @@
         <h2>Arduino-based MPPT battery solar charge controller v2.0</h2>
         <div class="clearfix">
             <div class="box">
-                <p><i>Description will be added soon</i></p>
-                <p></p>
+                <p>MPPT stands for Maximum Power Point Tracking. Solar panels have a <a href="https://www.ti.com/lit/an/slyt478/slyt478.pdf" target="_blank">speciffic</a> Load Current/Voltage characteristic. I'll give you a real world example using actual numbers instead of pure theory. We'll connect our imaginary solar panel, which can put out 22 V at no load and 1 A when shorted, directly to our imaginary 12 V battery. The battery is going to start charging at about 1 A, which means that we're getting 12 W of power from our solar panel. Not bad right? But we can do better. See, up to a certain point the solar panel acts like a current limited power supply, so the only way to increase the power output is to increase the voltage. An efficient DC-DC buck converter can do the job, we just need to find the tipping point, this is exactly what MPPT algorith does.</p>
                 <p>More images: <a href="/images/mppt_inside.gif">mppt_inside</a>, <a href="/images/mppt_pcb.gif">mppt_pcb</a></p>
             </div>
             <div class="box">>
@@ -341,9 +341,9 @@
         <footer style="margin-top: 100px;">
             <p><i>Work in progress...</i><br>
             České verze se to taky <b>možná</b> někdy dočká.</p>
-            <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/14 08:51:23: en,cs-CZ;q=0.9,cs;q=0.8 HTTP/1.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 theme:dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this.</p>
+            <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this.</p>
             <p>Up since the 3<sup>rd</sup> of January 2020 <br>
-            Last update: 14.1.2020</p>
+            Last update: 15.1.2020</p>
         </footer>
     </body>
 </html>
