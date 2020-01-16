@@ -13,13 +13,23 @@
                 }
                 function project_heading($heading, $in_progress=false) {
                     $h = "2";
+                    $id = strtolower($heading);
+                    $id = preg_replace("/[^a-z0-9 -]/", "", $id);
+                    $id = str_replace(" ", "_", $id);
                     if ($in_progress) {
-                        echo "<h$h><i>In progress:</i> $heading</h$h>";
+                        echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\"><i>In progress:</i> $heading</h$h></a>"; 
                     }
                     else
                     {
-                        echo "<h$h>$heading</h$h>";
+                        echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
                     }
+                }
+                function my_h1($heading) {
+                    $h = "1";
+                    $id = strtolower($heading);
+                    $id = preg_replace("/[^a-z0-9 -_]/", "", $id);
+                    $id = str_replace(" ", "_", $id);
+                    echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
                 }
                 function logEvent($message) {
                     if ($message != '') {
@@ -73,6 +83,13 @@
             a:hover {
                 <?php echo "color: $foreground_a_hover;\n"; ?>
             }
+            a.a_h:link {
+                text-decoration: none;
+            }
+            a.a_h:hover {
+                text-decoration: underline;
+                <?php echo "color: $foreground_a_hover;\n"; ?>
+            }
             h1, h2, h3, h4, h5, h6 {
                 <?php echo "color: $foreground_text;\n"; ?>
                 font-weight: normal;
@@ -117,7 +134,7 @@
         </style>
     </head>
     <body>
-        <form action="site.php" method="get">
+        <form action="" method="get">
             <button style="float: right;" type="submit" name="theme" value="dark">Dark</button>
             <button style="float: right;" type="submit" name="theme" value="light">Light</button>
         </form>
@@ -130,7 +147,7 @@
         
         <br>
         
-        <h1 id="2020">2020</h1>
+        <?php year_heading("2020"); ?>
 
         <?php project_heading("Facebook datamining", true); ?>
         <div class="clearfix">
@@ -157,7 +174,7 @@
         </div>
 
         
-        <h1 id="2019">2019</h1>
+        <?php year_heading("2019"); ?>
 
         <?php project_heading("Coincell keychain flashlight"); ?>
         <div class="clearfix">
@@ -223,7 +240,7 @@
         The image is up on the server in case you were wondering :) You can try to figure out the name (or checkout GitHub but don't tell that to anyone). -->
 
         
-        <h1 id="2017/18">2017/18</h1>
+        <?php year_heading("2017/18"); ?>
 
         <?php project_heading("Quadcopters!"); ?>
         <div class="clearfix">
@@ -264,7 +281,7 @@
         </div>
 
 
-        <h1 id="2016">2016</h1>
+        <?php year_heading("2016"); ?>
 
         <?php project_heading("Arduino-based multicell Li-Po or Lead-acid battery charger"); ?>
         <div class="clearfix">
@@ -321,7 +338,7 @@
         </div>
 
         
-        <h1 id="2015">2015</h1> 
+        <?php year_heading("2015"); ?>
 
         <?php project_heading("Arduino \"smart watch\""); ?>
         <div class="clearfix">
@@ -343,7 +360,7 @@
         <?php project_heading("Arduino-based MPPT battery solar charge controller v1.0"); ?>
         <div class="clearfix">
             <div class="box">
-                <p>An MPPT prototype and foundation of the <a href="#2016">second version</a>. I would be repeating myself in documenting this.</p>
+                <p>An MPPT prototype and foundation of the <a href="#arduino-based_mppt_battery_solar_charge_controller_v20">second version</a>. I would be repeating myself in documenting this.</p>
                 <p>I obviously took some inspiration from Julian Ilett's <a href="https://www.youtube.com/watch?v=MSz4-cr3EJw" target="_blank">MPPT</a>.</p>
                 <p>More images: <a href="/images/mppt_v1_display.gif">mppt_v1_display</a></p>
             </div>
