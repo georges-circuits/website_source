@@ -11,24 +11,29 @@
                 function a_img($fname) {
                     echo "<a href=\"/images/$fname\"><img src=\"/images/lq/$fname\" alt=\"$fname\"></a>";
                 }
-                function project_heading($heading, $in_progress=false) {
-                    $h = "2";
-                    $id = strtolower($heading);
+                function to_id($in) {
+                    $id = strtolower($in);
                     $id = preg_replace("/[^a-z0-9 -]/", "", $id);
                     $id = str_replace(" ", "_", $id);
+                    return $id;
+                }
+                function project_heading($heading, $in_progress=false) {
+                    $h = "2";
+                    $id = to_id($heading);
                     if ($in_progress) {
+                        echo "<a class=\"anchor\" id=$id></a>";
                         echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\"><i>In progress:</i> $heading</h$h></a>"; 
                     }
                     else
                     {
+                        echo "<a class=\"anchor\" id=$id></a>";
                         echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
                     }
                 }
                 function my_h1($heading) {
                     $h = "1";
-                    $id = strtolower($heading);
-                    $id = preg_replace("/[^a-z0-9 -_]/", "", $id);
-                    $id = str_replace(" ", "_", $id);
+                    $id = to_id($heading);
+                    echo "<a class=\"anchor\" id=$id></a>";
                     echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
                 }
                 function logEvent($message) {
@@ -85,10 +90,17 @@
             }
             a.a_h:link {
                 text-decoration: none;
+                top: -100px;
             }
             a.a_h:hover {
                 text-decoration: underline;
                 <?php echo "color: $foreground_a_hover;\n"; ?>
+            }
+            a.anchor {
+                display: block;
+                position: relative;
+                top: -15px;
+                visibility: hidden;
             }
             h1, h2, h3, h4, h5, h6 {
                 <?php echo "color: $foreground_text;\n"; ?>
@@ -109,6 +121,7 @@
                 max-height: 100%;
                 max-width: 100%;
                 margin-left: 10px;
+                margin-bottom: 30px;
             }
             * {
                 box-sizing: border-box;
@@ -139,7 +152,7 @@
             <button style="float: right;" type="submit" name="theme" value="light">Light</button>
         </form>
         
-        <h1 id="welcome">Welcome</h1>
+        <?php my_h1("Welcome"); ?>
 
         <p>This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts. It is also one of those sideprojects that, unlike many, actually made it into something tangible. As such however, I cannot promise its long-term permanence (the possibility of me forgetting about the relentless domain expiration date is very plausible for example)...</p>
 
@@ -147,7 +160,7 @@
         
         <br>
         
-        <?php year_heading("2020"); ?>
+        <?php my_h1("2020"); ?>
 
         <?php project_heading("Facebook datamining", true); ?>
         <div class="clearfix">
@@ -174,7 +187,7 @@
         </div>
 
         
-        <?php year_heading("2019"); ?>
+        <?php my_h1("2019"); ?>
 
         <?php project_heading("Coincell keychain flashlight"); ?>
         <div class="clearfix">
@@ -240,7 +253,7 @@
         The image is up on the server in case you were wondering :) You can try to figure out the name (or checkout GitHub but don't tell that to anyone). -->
 
         
-        <?php year_heading("2017/18"); ?>
+        <?php my_h1("2017/18"); ?>
 
         <?php project_heading("Quadcopters!"); ?>
         <div class="clearfix">
@@ -281,7 +294,7 @@
         </div>
 
 
-        <?php year_heading("2016"); ?>
+        <?php my_h1("2016"); ?>
 
         <?php project_heading("Arduino-based multicell Li-Po or Lead-acid battery charger"); ?>
         <div class="clearfix">
@@ -338,7 +351,7 @@
         </div>
 
         
-        <?php year_heading("2015"); ?>
+        <?php my_h1("2015"); ?>
 
         <?php project_heading("Arduino \"smart watch\""); ?>
         <div class="clearfix">
@@ -379,7 +392,7 @@
             České verze se to také <b>možná</b> někdy dočká.</p>
             <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this.</p>
             <p>Up since the 3<sup>rd</sup> of January 2020 <br>
-            Last update: 16.1.2020</p>
+            Last update: 17.1.2020</p>
         </footer>
     </body>
 </html>
