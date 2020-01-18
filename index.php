@@ -5,67 +5,70 @@
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <!-- <meta name="keywords" content="blog,about"> TODO-->
-        <title>My site</title>
-        <style type="text/css">
-            <?php
-                function a_img($fname) {
-                    echo "<a href=\"/images/$fname\"><img src=\"/images/lq/$fname\" alt=\"$fname\"></a>";
+        <title>manakjiri.eu</title>
+        <?php
+            function a_img($fname) {
+                echo "<a href=\"/images/$fname\"><img src=\"/images/lq/$fname\" alt=\"$fname\"></a>";
+            }
+            function to_id($in) {
+                $id = strtolower($in);
+                $id = preg_replace("/[^a-z0-9 -]/", "", $id);
+                $id = str_replace(" ", "_", $id);
+                return $id;
+            }
+            function project_heading($heading, $in_progress=false) {
+                $h = "2";
+                $id = to_id($heading);
+                if ($in_progress) {
+                    echo "<a class=\"anchor\" id=$id></a>";
+                    echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\"><i>In progress:</i> $heading</h$h></a>"; 
                 }
-                function to_id($in) {
-                    $id = strtolower($in);
-                    $id = preg_replace("/[^a-z0-9 -]/", "", $id);
-                    $id = str_replace(" ", "_", $id);
-                    return $id;
-                }
-                function project_heading($heading, $in_progress=false) {
-                    $h = "2";
-                    $id = to_id($heading);
-                    if ($in_progress) {
-                        echo "<a class=\"anchor\" id=$id></a>";
-                        echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\"><i>In progress:</i> $heading</h$h></a>"; 
-                    }
-                    else
-                    {
-                        echo "<a class=\"anchor\" id=$id></a>";
-                        echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
-                    }
-                }
-                function my_h1($heading) {
-                    $h = "1";
-                    $id = to_id($heading);
+                else
+                {
                     echo "<a class=\"anchor\" id=$id></a>";
                     echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
                 }
-                function logEvent($message) {
-                    if ($message != '') {
-                        // Add a timestamp to the start of the $message
-                        $message = date("Y/m/d H:i:s").': '.$message;
-                        $fp = fopen('logs/log.txt', 'a');
-                        fwrite($fp, $message."\n");
-                        fclose($fp);
-                    }
+            }
+            function my_h1($heading) {
+                // the name is missleading, it donesn't have to be HTML's h1
+                $h = "1";
+                $id = to_id($heading);
+                echo "<a class=\"anchor\" id=$id></a>";
+                echo "<a class=\"a_h\" href=\"#$id\"><h$h id=\"$id\">$heading</h$h></a>"; 
+            }
+            function logEvent($message) {
+                if ($message != '') {
+                    // Add a timestamp to the start of the $message
+                    $message = date("Y/m/d H:i:s").': '.$message;
+                    $fp = fopen('logs/log.txt', 'a');
+                    fwrite($fp, $message."\n");
+                    fclose($fp);
                 }
-                
-                // visual page setup
-                $theme_val = $_GET["theme"];
-                $margin_left_right = "5%";
-                if($theme_val === "light")
-                {
-                    $background = "#FFFFFF";
-                    $foreground_text = "#000000";
-                    $foreground_a = "#3f51b5";
-                    $foreground_a_hover = "#03a9f4";
-                    $text_highlight = "#EEEEEE";
-                } 
-                else 
-                {
-                    $background = "#000000";
-                    $foreground_text = "#DFDFDF";
-                    $foreground_a = "#03a9f4"; //03a9f4
-                    $foreground_a_hover = "#3f51b5"; //3f51b5
-                    $text_highlight = "#2E2E2E";
-                }
-            ?>
+            }
+            
+            // visual page setup
+            $theme_val = $_GET["theme"];
+            $margin_left_right = "5%";
+            if($theme_val === "light")
+            {
+                $background = "#FFFFFF";
+                $foreground_text = "#000000";
+                $foreground_a = "#3f51b5";
+                $foreground_a_hover = "#03a9f4";
+                $text_highlight = "#EEEEEE";
+                $image_opacity = "1";
+            } 
+            else 
+            {
+                $background = "#000000";
+                $foreground_text = "#DFDFDF";
+                $foreground_a = "#03a9f4"; //03a9f4
+                $foreground_a_hover = "#3f51b5"; //3f51b5
+                $text_highlight = "#2E2E2E";
+                $image_opacity = "0.7";
+            }
+        ?>
+        <style type="text/css">
             body {
                 font-family: sans-serif;
                 <?php echo "background-color: $background;\n"; ?>
@@ -122,6 +125,7 @@
                 max-width: 100%;
                 margin-left: 10px;
                 margin-bottom: 30px;
+                <?php /* echo "opacity: $image_opacity;\n"; */ ?>
             }
             * {
                 box-sizing: border-box;
@@ -147,7 +151,7 @@
         </style>
     </head>
     <body>
-        <form action="" method="get">
+        <form action="#" method="get">
             <button style="float: right;" type="submit" name="theme" value="dark">Dark</button>
             <button style="float: right;" type="submit" name="theme" value="light">Light</button>
         </form>
@@ -157,6 +161,8 @@
         <p>This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts. It is also one of those sideprojects that, unlike many, actually made it into something tangible. As such however, I cannot promise its long-term permanence (the possibility of me forgetting about the relentless domain expiration date is very plausible for example)...</p>
 
         <p>Most of my older projects (mid 2019 and older) can be found on my, now no longer active, <a href="https://www.instagram.com/georges_circuits/" target="_blank">Instagram</a> account. I diversified and became less active on social media since then (still don't know whether there is a correlation, anyways). I am on <a href="https://twitter.com/jiri_manak" target="_blank">Twitter</a>, but I am certainly not very active by Twitter's standards. I also sometimes post on <a href="https://www.youtube.com/channel/UCNN9n9_ZPvUgNaIL2yDP8Qw" target="_blank">YouTube</a> (and subsequently <a href="https://lbry.tv/@George:f" target="_blank">LBRY</a>) but those are even worse off activity-wise. I also have <a href="https://github.com/georges-circuits/" target="_blank">GitHub</a> with some public projects and a few more private ones, I might release them if I ever get around to tidy them up.</p>
+
+        <p><i>Hint:</i> All headings are links to themselves.</p>
         
         <br>
         
@@ -178,6 +184,8 @@
         <div class="clearfix">
             <div class="box">
                 <p>A network of ultra-low power low-cost maintenance-free outdoor wireless sensors connected to a base station to provide soil moisture readout for monitoring or automatic watering purposes.</p>
+                <p>The image shows a working prototype of the base station. The drawing was just a very simple way of demonstrating that the touchscreen works.</p>
+                <p>I'm currently in the stage of making schematics and routing the v1 PCBs. Alongside with that I'm working on some proof of concept code snippets for the individual parts of the project. I will share more details as I progress.</p>
                 <p>In the works since the summer of 2019.</p>
                 <p>More: <a href="/images/base_drawing.gif">base_drawing</a></p>
             </div>
@@ -258,7 +266,7 @@
         <?php project_heading("Quadcopters!"); ?>
         <div class="clearfix">
             <div class="box">
-                <p>We don't call these drones, they are quadcopetrs, quads in short. FPV stands for First Person View, which is exactly what it sounds like - you have a camera and a video transmitter on the quad, a monitor or preferably FPV goggles with a video receiver on the ground. This is usually old school analog system with low resolution and image quality but very low delay and predictable ditioration <!-- (where a digital system would start jittering, analog maybe goes out almost completely into static, but you can usally still see at least some features of the image, which is enough to steer out of that situation) -->. It enables you to see the world from the quad's perspective, which opens up a whole range of possibilities, as you can imagine.</p>
+                <p>We don't call these drones, they are quadcopters, quads in short. FPV stands for First Person View, which is exactly what it sounds like - you have a camera and a video transmitter on the quad, a monitor or preferably FPV goggles with a video receiver on the ground. This is usually old school analog system with low resolution and image quality but very low delay and predictable deterioration <!-- (where a digital system would start jittering, analog maybe goes out almost completely into static, but you can usally still see at least some features of the image, which is enough to steer out of that situation) -->. It enables you to see the world from the quad's perspective, which opens up a whole range of possibilities, as you can imagine.</p>
                 <p>The one you can see on the right is my latest one:
                 <ul>
                     <li>Quad itself:<ul>
@@ -274,7 +282,7 @@
                     </ul></li>
                     <li>Batteries:<ul>
                         <li>These things are, in my opinion, holding this hobby back the most. Quads are extremely power hungry and are constantly pushing batteries way beyond their limits, as a result, the batteries only last anywhere from 30 to 100 flights, which makes them probably the most expensive part of this hobby in the long term.</li>
-                        <li><b>Turnigy Graphene 4S 1300mAh</b> 65C (mine are pretty much dead after ~60 flights. I've had 6 in total: destroyed one in a crash, 3 are starting to show signs of dying cells, still flyable but weak in punchouts and aggresive corners and the remaining two are ok)</li>
+                        <li><b>Turnigy Graphene 4S 1300mAh</b> 65C (mine are pretty much dead after ~60 flights. I've had 6 in total: destroyed one in a crash, 3 are starting to show signs of dying cells, still flyable but weak in punchouts and aggressive corners and the remaining two are ok)</li>
                         <li><b>Turnigy Multistar 4S 1400mAh</b> 65C (these have lasted quite a bit longer with some clocking in about 150 flights, but they were weaker throughout compared to the Graphenes)</li>
                     </ul></li>
                     <li>Ground equipment:<ul>
@@ -321,16 +329,16 @@
         <?php project_heading("Arduino-based MPPT battery solar charge controller v2.0"); ?>
         <div class="clearfix">
             <div class="box">
-                <p>MPPT stands for Maximum Power Point Tracking. Solar panels have a speciffic Load Current/Voltage <a href="https://www.ti.com/lit/an/slyt478/slyt478.pdf" target="_blank">characteristic</a>. I'll give you a real world example using actual numbers instead of pure theory. We'll connect our imaginary solar panel, which can put out 22 V at no load and 1 A when shorted, directly to our imaginary 12 V battery. The battery is going to start charging at about 1 A, which means that we're getting 12 W of power from our solar panel. Not bad right? But we can do better.</p>
-                <p>See, up to a certain point the solar panel acts like a current limited power supply, so the only way to increase the power output is to increase the voltage. An efficient DC-DC buck converter can do the job, we just need to find the MPP tipping point. This is exactly what the MPPT algorith does, it keeps nudging the load up (you can think of it as variable resistive load) while measuring the power output, if it notices that the power is dropping, it will ease off.</p>
-                <p>By doing this, it should ideally find that our imaginay solar panel has its MPP at about 18 V. 1A * 18V gives us 18W of power, a 30% improvemnt. Of course you have to factor in the efficiency of the DC-DC converter but those are pretty efficient.</p>
-                <p>I picked those numbers deliberately, because those are the specs of my 20 W polycrystaline panel which lays on the roof suspended by a couple of wires from the rooftop window (It's been like that for a couple of years now and survived quite a few storms and high winds... Still, not a preffered mounting method, I guess). In practice the simple MPPT algorith didn't really work so ideally. If I look back, I think these were the main reasons:</p>
+                <p>MPPT stands for Maximum Power Point Tracking. Solar panels have a specific Load Current/Voltage <a href="https://www.ti.com/lit/an/slyt478/slyt478.pdf" target="_blank">characteristic</a>. I'll give you a real world example using actual numbers instead of pure theory. We'll connect our imaginary solar panel, which can put out 22 V at no load and 1 A when shorted, directly to our imaginary 12 V battery. The battery is going to start charging at about 1 A, which means that we're getting 12 W of power from our solar panel. Not bad right? But we can do better.</p>
+                <p>See, up to a certain point the solar panel acts like a current limited power supply, so the only way to increase the power output is to increase the voltage. An efficient DC-DC buck converter can do the job, we just need to find the MPP tipping point. This is exactly what the MPPT algorithm does, it keeps nudging the load up (you can think of it as variable resistive load) while measuring the power output, if it notices that the power is dropping, it will ease off.</p>
+                <p>By doing this, it should ideally find that our imaginary solar panel has its MPP at about 18 V. 1A * 18V gives us 18W of power, a 30% improvement. Of course you have to factor in the efficiency of the DC-DC converter but those are pretty efficient.</p>
+                <p>I picked those numbers deliberately, because those are the specs of my 20 W polycrystalline panel which lays on the roof suspended by a couple of wires from the rooftop window (It's been like that for a couple of years now and survived quite a few storms and high winds... Still, not a preferred mounting method, I guess). In practice the simple MPPT algorithm didn't really work so ideally. If I look back, I think these were the main reasons:</p>
                 <ul>
                     <li>The relatively low difference between the battery charge voltage and solar panel's MPP voltage (13.5 V and 18 V)</li>
                     <li>I'd imagine that my eyeballed component values used in the DC-DC converter have left a lot to be desired efficiency-wise</li>
                     <li>Low resolution of the AtMega328's ADCs</li>
                 </ul>
-                <p>I later came up with a "scanning" MPPT algorithm (I have no idea whether this is used in the industry, I think there are better ways). Every couple of minutes or so it went through the entire duty cycle range of the DC-DC converter and took note of the duty cycle value which yealded highest power output, than it sat on that value until the next scan. This worked quite well, in fact it still sits on my bench and charges batteries to this day <i>[16.1.2020]</i>. The SLA batteries themselves haven't aged very well, they hold a fraction of the rated capacity now.</p> 
+                <p>I later came up with a "scanning" MPPT algorithm (I have no idea whether this is used in the industry, I think there are better ways). Every couple of minutes or so it went through the entire duty cycle range of the DC-DC converter and took note of the duty cycle value which yielded highest power output, than it sat on that value until the next scan. This worked quite well, in fact it still sits on my bench and charges batteries to this day <i>[16.1.2020]</i>. The SLA batteries themselves haven't aged very well, they hold a fraction of the rated capacity now.</p> 
                 <p>I managed to snag a bargain deal on a <a href="/images/mppt_240w_panel.gif">240 W panel</a> but I haven't managed to mount it on the roof yet (I guess my old mounting technique wouldn't work so well this time). This MPPT isn't designed to handle this much power, so there is some demand for v3.0.</p>
                 <p>More images: <a href="/images/mppt_inside.gif">mppt_inside</a>, <a href="/images/mppt_pcb.gif">mppt_pcb</a></p>
             </div>
@@ -390,9 +398,10 @@
         <footer style="margin-top: 100px;">
             <p><i>Work in progress...</i><br>
             České verze se to také <b>možná</b> někdy dočká.</p>
-            <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this.</p>
-            <p>Up since the 3<sup>rd</sup> of January 2020 <br>
-            Last update: 17.1.2020</p>
+            <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
+            This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.gif">lock</a> icon and see Cookies to verify)</p>
+            <p>Up since the 3<sup>rd</sup> of January 2020<br>
+            Last update: 18.1.2020 <a style="float: right;" href="#">Return up</a></p>
         </footer>
     </body>
 </html>
