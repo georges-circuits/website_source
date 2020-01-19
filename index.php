@@ -93,7 +93,6 @@
             }
             a.a_h:link {
                 text-decoration: none;
-                top: -100px;
             }
             a.a_h:hover {
                 text-decoration: underline;
@@ -109,9 +108,6 @@
                 <?php echo "color: $foreground_text;\n"; ?>
                 font-weight: normal;
             }
-            h1 {
-                margin-top: 50px;
-            }
             button {
                 <?php echo "color: $foreground_text;\n"; ?>
                 <?php echo "background-color: $background;\n"; ?>
@@ -123,7 +119,7 @@
                 margin: 0 auto;
                 max-height: 100%;
                 max-width: 100%;
-                margin-left: 10px;
+                margin-left: 15px;
                 margin-bottom: 30px;
                 <?php /* echo "opacity: $image_opacity;\n"; */ ?>
             }
@@ -176,7 +172,7 @@
                 <p>I recently also implemented the most used words counter. I'm planning to add a couple more features and make the script more interactive and intuitive to use. I haven't yet figured out whether this data could be used for at least rudimentary psychological research.</p>
             </div>
             <div class="box">
-                <?php a_img("facebook_graph.gif"); ?>
+                <?php a_img("facebook_graph.jpg"); ?>
             </div>
         </div>
 
@@ -190,7 +186,7 @@
                 <p>More: <a href="/images/base_drawing.gif">base_drawing</a></p>
             </div>
             <div class="box">
-                <?php a_img("base_hello.gif"); ?>
+                <?php a_img("base_hello.jpg"); ?>
             </div>
         </div>
 
@@ -203,6 +199,7 @@
                 <p>Christmas gift for my friends. Also a pilot project for the moisture sensors. It periodically checks for movement and adjusts its "activity" value accordingly. The activity value determines how often (or if at all) it randomly flashes. It's supposed to feel like its alive, in a sense. Written out like this it doesn't sound like much but I think the effect is kinda neat and serves its purpose.</p>
                 <p>It also has some more or less useful features like static flashlight and various flashing modes and a "game" which you cannot win.</p>
                 <p>Source code and a little bit of documentation available on my <a href="https://github.com/georges-circuits/coincell_flashlight" target="_blank">GitHub</a></p>
+                <p>More: <a href="/images/flashlight_closeup.jpg">flashlight_closeup</a>, <a href="/images/flashlight_lit.jpg">flashlight_lit</a></p>
                 <br>
                 <p><b>User Manual</b> for those I told to search for it here:
                 <ul>
@@ -216,10 +213,9 @@
                         <li>Purple: Show battery level</li>
                     </ul></li>
                 </ul></p>
-                <p>More: <a href="/images/flashlight_leds_lit.gif">flashlight_leds_lit</a></p>
             </div>
             <div class="box">
-                <?php a_img("coincell_flashlight.gif"); ?>
+                <?php a_img("flashlight_leds_lit.jpg"); ?>
             </div>
         </div>
 
@@ -228,19 +224,20 @@
             <div class="box">
                 <ul>
                     <li>Amplifiers: <b>2x10W</b> AB class</li>
-                    <li>Battery: <b>37 Wh</b></li>
+                    <li>Battery: <b>37 Wh</b> 3-cell Li-Ion</li>
                     <li>Built-in analog equalizer</li>
                     <li>Bluetooth or 3.5 mm jack</li>
                     <li>Charging current: 1.5 A max (manually configurable or automatic MPPT)</li>
                     <li>Charging power: 15 W max</li>
-                    <li>Requisite over-temperature and overload protections including error displays</li>
+                    <li>USB output (up to 2 A)</li>
+                    <li>Requisite over-temperature and overload protections including error reporting</li>
                 </ul>
-                <p>Almost everything is custom designed (except the Bluetooth module and the two power converters visible <a href="/images/speaker_inside_2.gif">here</a>, but those were modified to be controllable by the microcontroller). The enclosure is made out of <a href="/images/speaker_layer_model.gif">layers</a> of laser cut plywood, the back is 3 mm aluminum for structural and cooling purposes. It's not the most efficient speaker in the world because it uses AB amplifiers. Pretty much all portable speakers use class D, which are way more efficient but higher distortion.</p>
+                <p>Almost everything is custom designed (except the Bluetooth module and the two power converters visible <a href="/images/speaker_inside_2.jpg">here</a>, but those were modified to be controllable by the microcontroller). The enclosure is made out of <a href="/images/speaker_layer_model.jpg">layers</a> of laser cut plywood, the back is 3 mm aluminum for structural and cooling purposes. It's not the most efficient speaker in the world because it uses AB amplifiers. Pretty much all portable speakers use class D, which are way more efficient but higher distortion.</p>
                 <p><b>Participated in the electronics <a href="https://www.roznovskastredni.cz/aktuality/mistrovstvi-cr-v-radiotelektronice-deti-a-mladeze-2019" target="_blank">competition</a> in Rožnov pod Radhoštěm.</b></p>
-                <p>More: <a href="/images/speaker_inside_1.gif">speaker_inside_1</a>, <a href="/images/speaker_inside_2.gif">speaker_inside_2</a>, <a href="/images/speaker_inside_3.gif">speaker_inside_3</a>, <a href="/images/speaker_schematic.gif">speaker_pcb_schematic</a>, <a href="/images/speaker_diagram_cz.gif">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.gif">speaker_layer_model</a>, <a href="/images/speaker_io_panel.gif">speaker_io_panel_cz</a></p>
+                <p>More: <a href="/images/speaker_inside_1.jpg">speaker_inside_1</a>, <a href="/images/speaker_inside_2.jpg">speaker_inside_2</a>, <a href="/images/speaker_inside_3.jpg">speaker_inside_3</a>, <a href="/images/speaker_schematic.jpg">speaker_pcb_schematic</a>, <a href="/images/speaker_diagram_cz.jpg">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.jpg">speaker_layer_model</a>, <a href="/images/speaker_io_panel.jpg">speaker_io_panel_cz</a></p>
             </div>
             <div class="box">
-                <?php a_img("bt_speaker.gif"); ?>
+                <?php a_img("bt_speaker.jpg"); ?>
             </div>
         </div>
 
@@ -254,7 +251,7 @@
                 <p></p>
             </div>
             <div class="box">
-                <?php //a_img("controller_box.gif"); ?>
+                <?php //a_img("controller_box.jpg"); ?>
             </div>
         </div> -->
         <!-- Nothing really happened this year and this project isn't very interesting in my opinion, so that's why this is commented out... It is awkward, I know. 
@@ -294,10 +291,11 @@
                 </ul></p>
                 <p>One of the first questions people have, after asking about the range, maximum speed and whether it can spy on you, is how much all this would cost in case they wanted to get into it. I never know how to approach this because if I tell them the amount, It'll most likely scare them off. It's not a cheap hobby to get into, that's for sure, <i>especially</i> initially when starting from zero. However, once you've acquired things like the radio, goggles and a charger, building and maintaining quads isn't that much of an expense.</p>
                 <p>Some of my flight videos: <a href="https://www.youtube.com/watch?v=7sWXnBD_3wk" target="_blank">The Best FPV Moments of 2017</a>, <a href="https://www.youtube.com/watch?v=lZ6qBc3ujX4" target="_blank">Exploring new places</a>, <a href="https://www.youtube.com/watch?v=idLPhe0tJ7k" target="_blank">Flow - FPV practice</a></p>
-                <p>More images: <a href="/images/quad_scenique.gif">quad_scenique</a>, <a href="/images/quad_charging_1.gif">quad_charging_1</a>, <a href="/images/quad_charging_2.gif">quad_charging_2</a></p>
+
+                <p>More images: <a href="/images/quad_scenique.jpg">quad_scenique</a>, <a href="/images/quad_charging_1.jpg">quad_charging_1</a>, <a href="/images/quad_charging_2.jpg">quad_charging_2</a>, <a href="/images/quad_field repairs.jpg">quad_field repairs</a>, <a href="/images/quad_pink_props.jpg">quad_pink_props</a>, <a href="/images/quad_aomway_goggles.jpg">quad_aomway_goggles</a>, <a href="/images/quad_on_a_bench.jpg">quad_on_a_bench</a></p>
             </div>
             <div class="box">
-                <?php a_img("quad_1.gif"); ?>
+                <?php a_img("quad_1.jpg"); ?>
             </div>
         </div>
 
@@ -307,22 +305,24 @@
         <?php project_heading("Arduino-based multicell Li-Po or Lead-acid battery charger"); ?>
         <div class="clearfix">
             <div class="box">
-            <p><i>Description will be added soon</i></p>
-                <p>More: <a href="/images/charger_pcb_1.gif">charger_pcb_1</a>, <a href="/images/charger_pcb_2.gif">charger_pcb_2</a></p>
+                <p>This is a 240 W battery charger with lithium battery charging and cell balancing support. It can also discharge batteries or bring them to storage charge level (in the case of Li-Po batteries).</p>
+                <p>I'm not even sure why I made it. Of course it is much easier (and safer most likely) to buy a proper battery charger (which I later bought anyway. Not because this one didn't work, I just needed more chargers). I certainly learned a lot about floating differential measurement, when measuring the individual cell voltages, and design of switching DC-DC converters in the process, so it was worth it.</p>
+                <p>More: <a href="/images/charger_pcb_1.jpg">charger_pcb_1</a>, <a href="/images/charger_pcb_2.jpg">charger_pcb_2</a>, <a href="/images/charger_charging.jpg">charger_charging</a></p>
             </div>
             <div class="box">
-                <?php a_img("charger.gif"); ?>
+                <?php a_img("charger.jpg"); ?>
             </div>
         </div>
 
         <?php project_heading("Obstacle avoidance robot"); ?>
         <div class="clearfix">
             <div class="box">
-                <p><i>Description will be added soon</i></p>
+                <p>It was supposed to be a prototyping platform for room navigation algorithms but it never really got that far. The ultrasonic sensors were very unreliable and frequently gave false measurements.</p>
+                <p>I may revisit this someday. Nowadays there are sensors much better suited for this, in my opinion, like <a href="https://www.adafruit.com/product/3317" target="_blank">this</a> time of flight sensor and some mm-Wave sensors. I have certain vision in mind.</p>
                 <p>More: <a href="/images/robot_driving.gif">robot_driving</a></p>
             </div>
             <div class="box">
-                <?php a_img("robot_top.gif"); ?>
+                <?php a_img("robot_top.jpg"); ?>
             </div>
         </div>
 
@@ -339,19 +339,18 @@
                     <li>Low resolution of the AtMega328's ADCs</li>
                 </ul>
                 <p>I later came up with a "scanning" MPPT algorithm (I have no idea whether this is used in the industry, I think there are better ways). Every couple of minutes or so it went through the entire duty cycle range of the DC-DC converter and took note of the duty cycle value which yielded highest power output, than it sat on that value until the next scan. This worked quite well, in fact it still sits on my bench and charges batteries to this day <i>[16.1.2020]</i>. The SLA batteries themselves haven't aged very well, they hold a fraction of the rated capacity now.</p> 
-                <p>I managed to snag a bargain deal on a <a href="/images/mppt_240w_panel.gif">240 W panel</a> but I haven't managed to mount it on the roof yet (I guess my old mounting technique wouldn't work so well this time). This MPPT isn't designed to handle this much power, so there is some demand for v3.0.</p>
-                <p>More images: <a href="/images/mppt_inside.gif">mppt_inside</a>, <a href="/images/mppt_pcb.gif">mppt_pcb</a></p>
+                <p>I managed to snag a bargain deal on a <a href="/images/mppt_240w_panel.jpg">240 W panel</a> but I haven't managed to mount it on the roof yet (I guess my old mounting technique wouldn't work so well this time). This MPPT isn't designed to handle this much power, so there is some demand for v3.0.</p>
+                <p>More images: <a href="/images/mppt_inside.jpg">mppt_inside</a>, <a href="/images/mppt_pcb.jpg">mppt_pcb</a></p>
             </div>
             <div class="box">>
-                <?php a_img("mppt_display.gif"); ?>
+                <?php a_img("mppt_display.jpg"); ?>
             </div>
         </div>
 
         <?php project_heading("Power bank"); ?>
         <div class="clearfix">
             <div class="box">
-                <p><i>Description will be added soon</i></p>
-                <p>More images: <a href="/images/power_bank_inside.gif">power_bank_inside</a>, <a href="/images/power_bank_pcb.gif">power_bank_pcb</a></p>
+                <p>More images: <a href="/images/power_bank_inside.jpg">power_bank_inside</a>, <a href="/images/power_bank_pcb.jpg">power_bank_pcb</a></p>
             </div>
             <div class="box">
                 <?php a_img("powerbank_charging.gif"); ?>
@@ -371,10 +370,10 @@
                     <li>NRF24L01+ 2.4GHz wireless TRX module</li>
                     <li>Li-Po battery /w protection and charging board</li>
                 </ul>
-                <p>More images: <a href="/images/smartwatch_tick.gif">smartwatch_tick</a>, <a href="/images/arduino_smartwatch_2.gif">arduino_smartwatch_2</a></p>
+                <p>More images: <a href="/images/smartwatch_tick.gif">smartwatch_tick</a>, <a href="/images/arduino_smartwatch_2.jpg">arduino_smartwatch_2</a></p>
             </div>
             <div class="box">
-                <?php a_img("arduino_smartwatch.gif"); ?>
+                <?php a_img("arduino_smartwatch.jpg"); ?>
             </div>
         </div>
 
@@ -383,10 +382,10 @@
             <div class="box">
                 <p>An MPPT prototype and foundation of the <a href="#arduino-based_mppt_battery_solar_charge_controller_v20">second version</a>. I would be repeating myself in documenting this.</p>
                 <p>I obviously took some inspiration from Julian Ilett's <a href="https://www.youtube.com/watch?v=MSz4-cr3EJw" target="_blank">MPPT</a>.</p>
-                <p>More images: <a href="/images/mppt_v1_display.gif">mppt_v1_display</a></p>
+                <p>More images: <a href="/images/mppt_v1_display.jpg">mppt_v1_display</a></p>
             </div>
             <div class="box">
-                <?php a_img("mppt_v1.gif"); ?>
+                <?php a_img("mppt_v1.jpg"); ?>
             </div>
         </div>
         
@@ -398,10 +397,10 @@
         <footer style="margin-top: 100px;">
             <p><i>Work in progress...</i><br>
             České verze se to také <b>možná</b> někdy dočká.</p>
-            <p><b>Disclaimer:</b> The site logs information about your browser (mainly the language preference and things like your browser name and the device you are using for debugging purposes). This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
-            This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.gif">lock</a> icon and see Cookies to verify)</p>
+            <p><b>Disclaimer:</b> The site logs information about your browser. This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
+            This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.jpg">lock</a> icon and see Cookies to verify)</p>
             <p>Up since the 3<sup>rd</sup> of January 2020<br>
-            Last update: 18.1.2020 <a style="float: right;" href="#">Return up</a></p>
+            Last update: 19.1.2020 <a style="float: right;" href="#">Return up</a></p>
         </footer>
     </body>
 </html>
