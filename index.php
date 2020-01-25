@@ -49,6 +49,7 @@
             // visual page setup
             $theme_val = $_GET["theme"];
             $margin_left_right = "5%";
+            $margin_center = join([strval(100 - (2 * intval($margin_left_right))), "%"]);
             if($theme_val === "light")
             {
                 $background = "#FFFFFF";
@@ -85,11 +86,18 @@
                 padding: 3px;
                 margin-left: -10px;
             }
+            .code {
+                font-family: "Source Code Pro", monospace;
+                /* color: crimson; */
+                <?php echo "background-color: $text_highlight;\n"; ?>
+            }
             a:link, a:visited {
                 <?php echo "color: $foreground_a;\n"; ?>
+                text-decoration: none;
             }
             a:hover {
                 <?php echo "color: $foreground_a_hover;\n"; ?>
+                text-decoration: underline;
             }
             a.a_h:link {
                 text-decoration: none;
@@ -101,7 +109,7 @@
             a.anchor {
                 display: block;
                 position: relative;
-                top: -15px;
+                top: -40px;
                 visibility: hidden;
             }
             h1, h2, h3, h4, h5, h6 {
@@ -112,6 +120,31 @@
                 <?php echo "color: $foreground_text;\n"; ?>
                 <?php echo "background-color: $background;\n"; ?>
                 border: none;
+                text-align: center;
+                padding: 1px 10px;
+            }
+            button:hover, li a:hover.nav {
+                <?php echo "background-color: $text_highlight;\n"; ?>
+            }
+            ul.nav {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                <?php echo "background-color: $background;\n"; ?>
+                position: fixed;
+                top: 0;
+                <?php echo "width: $margin_center;\n"; ?>
+            }
+            li.nav {
+                float: right;
+            }
+            li a.nav {
+                display: block;
+                <?php echo "color: $foreground_text;\n"; ?>
+                text-align: center;
+                padding: 1px 10px;
+                text-decoration: none;
             }
             img {
                 padding: 0;
@@ -119,8 +152,8 @@
                 margin: 0 auto;
                 max-height: 100%;
                 max-width: 100%;
-                margin-left: 15px;
-                margin-bottom: 30px;
+                padding-left: 15px;
+                padding-bottom: 30px;
                 <?php /* echo "opacity: $image_opacity;\n"; */ ?>
             }
             * {
@@ -143,14 +176,25 @@
                 img {
                     margin-left: 0px;
                 }
+                ul.nav {
+                    width: 95%;
+                }
             }
         </style>
     </head>
     <body>
-        <form action="#" method="get">
-            <button style="float: right;" type="submit" name="theme" value="dark">Dark</button>
-            <button style="float: right;" type="submit" name="theme" value="light">Light</button>
-        </form>
+        <header>
+            <!-- <ul class="nav">
+                <li class="nav"><a class="nav" href="#disclaimer">Disclaimers</a></li>
+                <li class="nav"><a class="nav" href="#things_more_people_need_to_know_about">Noteworthy</a></li>
+                <li class="nav"><a class="nav" href="#2020">Projects</a></li>
+                <li class="nav"><a class="nav" href="#welcome">About</a></li>
+            </ul> -->
+            <form action="#" method="get">
+                <button style="float: right;" type="submit" name="theme" value="dark">Dark</button>
+                <button style="float: right;" type="submit" name="theme" value="light">Light</button>
+            </form>
+        </header>
         
         <?php my_h1("Welcome"); ?>
 
@@ -158,7 +202,7 @@
 
         <p>Most of my older projects (mid 2019 and older) can be found on my, now no longer active, <a href="https://www.instagram.com/georges_circuits/" target="_blank">Instagram</a> account. I diversified and became less active on social media since then (still don't know whether there is a correlation, anyways). I am on <a href="https://twitter.com/jiri_manak" target="_blank">Twitter</a>, but I am certainly not very active by Twitter's standards. I also sometimes post on <a href="https://www.youtube.com/channel/UCNN9n9_ZPvUgNaIL2yDP8Qw" target="_blank">YouTube</a> (and subsequently <a href="https://lbry.tv/@George:f" target="_blank">LBRY</a>) but those are even worse off activity-wise. I also have <a href="https://github.com/georges-circuits/" target="_blank">GitHub</a> with some public projects and a few more private ones, I might release them if I ever get around to tidy them up.</p>
 
-        <p><i>Hint:</i> All headings are links to themselves.</p>
+        <p><b>Hint:</b> All headings are links to themselves.</p>
         
         <br>
         
@@ -183,7 +227,7 @@
                 <p>The image shows a working prototype of the base station. The drawing was just a very simple way of demonstrating that the touchscreen works.</p>
                 <p>I'm currently in the stage of making schematics and routing the v1 PCBs. Alongside with that I'm working on some proof of concept code snippets for the individual parts of the project. I will share more details as I progress.</p>
                 <p>In the works since the summer of 2019.</p>
-                <p>More: <a href="/images/base_drawing.gif">base_drawing</a></p>
+                <p>More: <a href="/images/base_drawing.gif">base_drawing</a>, <a href="/images/base_schematic_root.jpg">base_schematic_root</a></p>
             </div>
             <div class="box">
                 <?php a_img("base_hello.jpg"); ?>
@@ -234,7 +278,7 @@
                 </ul>
                 <p>Almost everything is custom designed (except the Bluetooth module and the two power converters visible <a href="/images/speaker_inside_2.jpg">here</a>, but those were modified to be controllable by the microcontroller). The enclosure is made out of <a href="/images/speaker_layer_model.jpg">layers</a> of laser cut plywood, the back is 3 mm aluminum for structural and cooling purposes. It's not the most efficient speaker in the world because it uses AB amplifiers. Pretty much all portable speakers use class D, which are way more efficient but higher distortion.</p>
                 <p><b>Participated in the electronics <a href="https://www.roznovskastredni.cz/aktuality/mistrovstvi-cr-v-radiotelektronice-deti-a-mladeze-2019" target="_blank">competition</a> in Rožnov pod Radhoštěm.</b></p>
-                <p>More: <a href="/images/speaker_inside_1.jpg">speaker_inside_1</a>, <a href="/images/speaker_inside_2.jpg">speaker_inside_2</a>, <a href="/images/speaker_inside_3.jpg">speaker_inside_3</a>, <a href="/images/speaker_schematic.jpg">speaker_pcb_schematic</a>, <a href="/images/speaker_diagram_cz.jpg">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.jpg">speaker_layer_model</a>, <a href="/images/speaker_io_panel.jpg">speaker_io_panel_cz</a></p>
+                <p>More: <a href="/images/speaker_inside_1.jpg">speaker_inside_1</a>, <a href="/images/speaker_inside_2.jpg">speaker_inside_2</a>, <a href="/images/speaker_inside_3.jpg">speaker_inside_3</a>, <a href="/images/speaker_schematic.jpg">speaker_pcb_schematic</a>, <a href="/images/speaker_diagram_cz.jpg">speaker_diagram_cz</a>, <a href="/images/speaker_layer_model.jpg">speaker_layer_model</a>, <a href="/images/speaker_io_panel.jpg">speaker_io_panel_cz</a>, <a href="/docs/dokumentace_reproduktor_2019.pdf" target="_blank">dokumentace_reproduktor_2019 [pdf]</a></p>
             </div>
             <div class="box">
                 <?php a_img("bt_speaker.jpg"); ?>
@@ -258,7 +302,7 @@
         The image is up on the server in case you were wondering :) You can try to figure out the name (or checkout GitHub but don't tell that to anyone). -->
 
         
-        <?php my_h1("2017/18"); ?>
+        <?php my_h1("2018"); ?>
 
         <?php project_heading("Quadcopters!"); ?>
         <div class="clearfix">
@@ -300,19 +344,22 @@
         </div>
 
 
-        <?php my_h1("2016"); ?>
-
+        <?php my_h1("2017"); ?>
+        
         <?php project_heading("Arduino-based multicell Li-Po or Lead-acid battery charger"); ?>
         <div class="clearfix">
             <div class="box">
                 <p>This is a 240 W battery charger with lithium battery charging and cell balancing support. It can also discharge batteries or bring them to storage charge level (in the case of Li-Po batteries).</p>
                 <p>I'm not even sure why I made it. Of course it is much easier (and safer most likely) to buy a proper battery charger (which I later bought anyway. Not because this one didn't work, I just needed more chargers). I certainly learned a lot about floating differential measurement, when measuring the individual cell voltages, and design of switching DC-DC converters in the process, so it was worth it.</p>
-                <p>More: <a href="/images/charger_pcb_1.jpg">charger_pcb_1</a>, <a href="/images/charger_pcb_2.jpg">charger_pcb_2</a>, <a href="/images/charger_charging.jpg">charger_charging</a></p>
+                <p>More: <a href="/images/charger_pcb_1.jpg">charger_pcb_1</a>, <a href="/images/charger_pcb_2.jpg">charger_pcb_2</a>, <a href="/images/charger_charging.jpg">charger_charging</a>, <a href="/docs/dokumentace_li-po_nabijecka_2017.pdf" target="_blank">dokumentace_li-po_nabijecka_2017 [pdf]</a></p>
             </div>
             <div class="box">
                 <?php a_img("charger.jpg"); ?>
             </div>
         </div>
+
+
+        <?php my_h1("2016"); ?>
 
         <?php project_heading("Obstacle avoidance robot"); ?>
         <div class="clearfix">
@@ -340,7 +387,7 @@
                 </ul>
                 <p>I later came up with a "scanning" MPPT algorithm (I have no idea whether this is used in the industry, I think there are better ways). Every couple of minutes or so it went through the entire duty cycle range of the DC-DC converter and took note of the duty cycle value which yielded highest power output, than it sat on that value until the next scan. This worked quite well, in fact it still sits on my bench and charges batteries to this day <i>[16.1.2020]</i>. The SLA batteries themselves haven't aged very well, they hold a fraction of the rated capacity now.</p> 
                 <p>I managed to snag a bargain deal on a <a href="/images/mppt_240w_panel.jpg">240 W panel</a> but I haven't managed to mount it on the roof yet (I guess my old mounting technique wouldn't work so well this time). This MPPT isn't designed to handle this much power, so there is some demand for v3.0.</p>
-                <p>More images: <a href="/images/mppt_inside.jpg">mppt_inside</a>, <a href="/images/mppt_pcb.jpg">mppt_pcb</a></p>
+                <p>More: <a href="/images/mppt_inside.jpg">mppt_inside</a>, <a href="/images/mppt_pcb.jpg">mppt_pcb</a>, <a href="/docs/dokumentace_mppt_2016.pdf" target="_blank">dokumentace_mppt_2016 [pdf]</a></p>
             </div>
             <div class="box">>
                 <?php a_img("mppt_display.jpg"); ?>
@@ -388,19 +435,23 @@
                 <?php a_img("mppt_v1.jpg"); ?>
             </div>
         </div>
+
+
+        <!-- <?php my_h1("Things more people need to know about"); ?> -->
+
         
         
         <?php
             logEvent(join([$_SERVER['HTTP_ACCEPT_LANGUAGE'], " || ", $_SERVER['SERVER_PROTOCOL'], " || ", $_SERVER['HTTP_USER_AGENT'], " || ", $theme_val]));
         ?>
 
-        <footer style="margin-top: 100px;">
+        <footer style="margin-top: 150px;">
             <p><i>Work in progress...</i><br>
             České verze se to také <b>možná</b> někdy dočká.</p>
-            <p><b>Disclaimer:</b> The site logs information about your browser. This is what a log line looks like: <i <?php echo "style=\"background-color: $text_highlight;\""; ?>>2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</i>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
+            <p id="disclaimer"><b>Disclaimer:</b> The site logs information about your browser. This is what a log line looks like: <code class="code">2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</code>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
             This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.jpg">lock</a> icon and see Cookies to verify)</p>
             <p>Up since the 3<sup>rd</sup> of January 2020<br>
-            Last update: 19.1.2020 <a style="float: right;" href="#">Return up</a></p>
+            Last update: 21.1.2020 <a style="float: right;" href="#">Return up</a></p>
         </footer>
     </body>
 </html>
