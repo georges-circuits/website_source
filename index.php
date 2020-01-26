@@ -174,7 +174,7 @@
                     width: 100%;
                 }
                 img {
-                    margin-left: 0px;
+                    padding-left: 0px;
                 }
                 ul.nav {
                     width: 95%;
