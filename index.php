@@ -73,7 +73,7 @@
             body {
                 font-family: sans-serif;
                 <?php echo "background-color: $background;\n"; ?>
-                margin-top: 50px;
+                margin-top: 30px;
                 margin-bottom: 30px;
                 <?php echo "margin-right: $margin_left_right;\n"; ?>
                 <?php echo "margin-left: $margin_left_right;\n"; ?>
@@ -169,7 +169,7 @@
                 display: table;
             }
             /* mobile devices and small screens */
-            @media screen and (max-width: 800px) {
+            @media screen and (max-width: 1000px) {
                 .box {
                     width: 100%;
                 }
@@ -214,7 +214,7 @@
                 <p>How a random weekend project turned into my graduation work... At the beginning it was just that. I wanted to learn how to work with databases. I figured that instead of using some random JSON example I could download my data from Facebook and use that instead.</p>
                 <p>I'm already satisfied with the basic functionality (the original objective) - the Python script counts the amount of messages in a specified time frame, say a week, resulting in a messages per week value which it then puts into a .csv chart. I can then take this file, open it in Excel and make a nice graph out of it.</p>
                 <p>I recently also implemented the most used words counter. I'm planning to add a couple more features and make the script more interactive and intuitive to use. I haven't yet figured out whether this data could be used for at least rudimentary psychological research.</p>
-                <p>Update: I refined the project and made it <a href="https://github.com/georges-circuits/fb_conversations" target="_blank">public</a>. It's still certainly not finished yet but it works. If you clone it, it should work just fine, it uses just one non-standard package (tqdm to show progress bars) but you can edit that out of the code, it's not mandatory (just don't freak out when it hangs for a couple of minutes, sometimes it does take quite a while to chew through all those messages). I run it using python3.7.</p>
+                <p><i>Update:</i> I refined the project and made it <a href="https://github.com/georges-circuits/fb_conversations" target="_blank">public</a>. It's still certainly not finished yet but it works. If you clone it, it should work just fine, it uses just one non-standard package (tqdm to show progress bars) but you can edit that out of the code, it's not mandatory (just don't freak out when it hangs for a couple of minutes, sometimes it does take quite a while to chew through all those messages). I run it using python3.7.</p>
             </div>
             <div class="box">
                 <?php a_img("facebook_graph.jpg"); ?>
