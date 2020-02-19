@@ -4,8 +4,9 @@
 <html>
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts.">
         <!-- <meta name="keywords" content="blog,about"> TODO-->
-        <title>manakjiri.eu</title>
+        <title>Maňák Jiří</title>
         <?php
             function a_img($fname) {
                 echo "<a href=\"/images/$fname\"><img src=\"/images/lq/$fname\" alt=\"$fname\"></a>";
@@ -58,6 +59,7 @@
                 $foreground_a_hover = "#03a9f4";
                 $text_highlight = "#EEEEEE";
                 $image_opacity = "1";
+                $background_image = "/images/output_crop_edit_inv.jpg";
             } 
             else 
             {
@@ -67,14 +69,18 @@
                 $foreground_a_hover = "#3f51b5"; //3f51b5
                 $text_highlight = "#2E2E2E";
                 $image_opacity = "0.7";
+                $background_image = "/images/output_crop_edit.jpg";
             }
         ?>
         <style type="text/css">
             body {
                 font-family: sans-serif;
                 <?php echo "background-color: $background;\n"; ?>
+                <?php echo ("background-image: url($background_image);"); ?>
+                background-position: 100% 100%;
+                background-repeat: no-repeat;
                 margin-top: 30px;
-                margin-bottom: 30px;
+                margin-bottom: 50px;
                 <?php echo "margin-right: $margin_left_right;\n"; ?>
                 <?php echo "margin-left: $margin_left_right;\n"; ?>
             }
@@ -214,7 +220,7 @@
                 <p>How a random weekend project turned into my graduation work... At the beginning it was just that. I wanted to learn how to work with databases. I figured that instead of using some random JSON example I could download my data from Facebook and use that instead.</p>
                 <p>I'm already satisfied with the basic functionality (the original objective) - the Python script counts the amount of messages in a specified time frame, say a week, resulting in a messages per week value which it then puts into a .csv chart. I can then take this file, open it in Excel and make a nice graph out of it.</p>
                 <p>I recently also implemented the most used words counter. I'm planning to add a couple more features and make the script more interactive and intuitive to use. I haven't yet figured out whether this data could be used for at least rudimentary psychological research.</p>
-                <p><i>Update:</i> I refined the project and made it <a href="https://github.com/georges-circuits/fb_conversations" target="_blank">public</a>. It's still certainly not finished yet but it works. If you clone it, it should work just fine, it uses just one non-standard package (tqdm to show progress bars) but you can edit that out of the code, it's not mandatory (just don't freak out when it hangs for a couple of minutes, sometimes it does take quite a while to chew through all those messages). I run it using python3.7.</p>
+                <p><i>Update:</i> I refined the project and made it <a href="https://github.com/georges-circuits/fb_conversations" target="_blank">public</a>. It's still certainly not finished yet, but it works. If you clone it, it should run just fine, it uses just one non-standard package (tqdm to show progress bars) but you can edit that out of the code, it's not mandatory (just don't freak out when it hangs for a couple of minutes, sometimes it does take quite a while to chew through all those messages).</p>
             </div>
             <div class="box">
                 <?php a_img("facebook_graph.jpg"); ?>
@@ -452,7 +458,7 @@
             <p id="disclaimer"><b>Disclaimer:</b> The site logs information about your browser. This is what a log line looks like: <code class="code">2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</code>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
             This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.jpg">lock</a> icon and see Cookies to verify)</p>
             <p>Up since the 3<sup>rd</sup> of January 2020<br>
-            Last update: 25.1.2020 <a style="float: right;" href="#">Return up</a></p>
+            Last update: 30.1.2020 <a style="float: right;" href="#">Return up</a></p>
         </footer>
     </body>
 </html>
