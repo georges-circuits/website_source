@@ -204,7 +204,7 @@
         
         <?php my_h1("Welcome"); ?>
 
-        <p>This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts. It is also one of those sideprojects that, unlike many, actually made it into something tangible. As such however, I cannot promise its long-term permanence (the possibility of me forgetting about the relentless domain expiration date is very plausible for example)...</p>
+        <p>This site is meant to be kind of a guidepost of my internet footprint. Maybe even a personal blog of sorts. It is also one of those side-projects that, unlike many, actually made it into something tangible. As such however, I cannot promise its long-term permanence (the possibility of me forgetting about the relentless domain expiration date is very plausible for example)...</p>
 
         <p>Most of my older projects (mid 2019 and older) can be found on my, now no longer active, <a href="https://www.instagram.com/georges_circuits/" target="_blank">Instagram</a> account. I diversified and became less active on social media since then (still don't know whether there is a correlation, anyways). I am on <a href="https://twitter.com/jiri_manak" target="_blank">Twitter</a>, but I am certainly not very active by Twitter's standards. I also sometimes post on <a href="https://www.youtube.com/channel/UCNN9n9_ZPvUgNaIL2yDP8Qw" target="_blank">YouTube</a> (and subsequently <a href="https://lbry.tv/@George:f" target="_blank">LBRY</a>) but those are even worse off activity-wise. I also have <a href="https://github.com/georges-circuits/" target="_blank">GitHub</a> with some public projects and a few more private ones, I might release them if I ever get around to tidy them up.</p>
 
@@ -213,16 +213,36 @@
         <br>
         
         <?php my_h1("2020"); ?>
+        
+        <!-- <a href="" target="_blank"></a> -->
 
-<!--         <?php project_heading("DSCOVR live wallpaper"); ?>
+        <?php project_heading("Jetson Nano powered RC car", true); ?>
         <div class="clearfix">
             <div class="box">
-                <p> </p>
+                <p>So this has been a dream of mine for a quite some time - build (or at least attempt to build) a sort of playful standalone autonomous wheel-based robot with a grabber arm perhaps. Something resembling Tony Stark's Dum-E, although I've had this idea in mind long before I got familiar with Marvel's Universe. </p> 
+                <p> Anyways, I needed some fun project for the holidays and so I decided to finally pursue this one. The objective isn't really to build a humanoid assistant to replace real people and friends or anything like that, it's mainly the idea of having a computer algorithm, which, by its very nature, is very deterministic and predictable (well, we developers might sometimes disagree with this wisdom until we reassure ourselves that the thing is doing exactly what it's told and that the problem resides somewhere between the chair and the keyboard, but I digress) and turn it into something that has a mind of its own (it will still obey every command I give it of course, it will be a computer after all, it will just mask it very well, or at least that's the idea).</p>
+                <p>The control is split into two parts - a microcontroller for the low layer and real-time processing and a computer for the image processing and high-level control:
+                <ul>
+                    <li>The computer is a <a href="https://developer.nvidia.com/embedded/jetson-nano-developer-kit" target="_blank">Jetson Nano</a> from nVidia<ul>
+                        <li>It runs nVidia's Jetpack distro which includes <a href="https://github.com/dusty-nv/jetson-inference" target="_blank">Jetson inference</a> Python package that enables loading and running neural nets</li>
+                        <li>It's got the <a href="https://www.raspberrypi.org/products/camera-module-v2/" target="_blank">Raspberry pi camera V2</a> connected to it</li>
+                        <li>It sends commands and retrieves data from sensors</li>
+                        <li>And there is my enormous Python script(s) running the whole show including a GUI dashboard</li>
+                    </ul></li>
+                    <li>The microcontroller is an <a href="https://www.st.com/en/microcontrollers-microprocessors/stm32f407-417.html" target="_blank">STM32F407</a> which communicates with the Jetson over USB<ul>
+                        <li>Generates control signals for the stepper motor which drives the whole car and the servo which does the steering</li>
+                        <li>It receives data over UART from my I2C expansion boards (those are actually STM32F1 boards that emulate a number of I2C buses on their GPIO pins and communicate with <a href="https://www.adafruit.com/product/3317" target="_blank">VL53L0X</a> ToF distance sensors)</li>
+                        <li>It retrieves accelerometer, gyro and compass data from an IMU</li>
+                        <li>It acts as a watchdog for the Jetson and goes into failsafe if it doesn't hear from the Jetson for too long</li>
+                        <li>Finaly it does some housekeeping stuff like checking the battery voltage, cleaning up the data from the sensors and calibrating them</li>
+                    </ul></li>
+                </ul>
+                </p>
             </div>
             <div class="box">
-                <?php a_img("base_hello.jpg"); ?>
+                <?php a_img("JetsonNano-DevKit.jpg"); ?>
             </div>
-        </div> -->
+        </div>
 
         <?php project_heading("Facebook datamining"); ?>
         <div class="clearfix">
@@ -459,16 +479,24 @@
         
         
         <?php
-            logEvent(join([$_SERVER['HTTP_ACCEPT_LANGUAGE'], " || ", $_SERVER['SERVER_PROTOCOL'], " || ", $_SERVER['HTTP_USER_AGENT'], " || ", $theme_val]));
+            /* logEvent(join([$_SERVER['HTTP_ACCEPT_LANGUAGE'], " || ", $_SERVER['SERVER_PROTOCOL'], " || ", $_SERVER['HTTP_USER_AGENT'], " || ", $theme_val])); */
+
+            //session_start();
+            //if(empty($_SESSION['visited']){
+                $counter = file_get_contents('./count.txt') + 1;
+                file_put_contents('./count.txt', $counter);
+            //}
+            //$_SESSION['visited'] = TRUE;
         ?>
 
         <footer style="margin-top: 150px;">
             <p><i>Work in progress...</i><br>
             České verze se to také <b>možná</b> někdy dočká.</p>
-            <p id="disclaimer"><b>Disclaimer:</b> The site logs information about your browser. This is what a log line looks like: <code class="code">2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</code>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
-            This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.jpg">lock</a> icon and see Cookies to verify)</p>
+            <!-- <p id="disclaimer"><b>Disclaimer:</b> The site logs information about your browser. This is what a log line looks like: <code class="code">2020/01/15 10:40:37: en,cs-CZ;q=0.9,cs;q=0.8 || HTTP/1.1 || Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36 || dark</code>. I'm doing it purely out of curiosity. I'm putting this disclosure here because I want to be transparent about what it is that I'm doing with data. Checkout the <a href="https://github.com/georges-circuits/website_source" target="_blank">GitHub repo</a> to verify that that's actually what's happening and let me know if you don't agree with this. <br>
+            This site does not store any cookies. (click on the <a href="/images/check_cookies_yourself.jpg">lock</a> icon and see Cookies to verify)</p> -->
+            <?php echo ("<p>View count: $counter</p>"); ?>
             <p>Up since the 3<sup>rd</sup> of January 2020<br>
-            Last update: 3.4.2020 <a style="float: right;" href="#">Return up</a></p>
+            Last update: 14.9.2020 <a style="float: right;" href="#">Return up</a></p>
         </footer>
     </body>
 </html>
